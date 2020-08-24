@@ -27,7 +27,10 @@ namespace Controllers
 
         private Action OnModelChosen(ModelType modelType)
         {
-            return () => throw new NotImplementedException();
+            return () =>
+            {
+                MainController.SetController(ControllerType.Game);
+            };
 
         }
 
