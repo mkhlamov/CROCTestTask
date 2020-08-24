@@ -36,7 +36,6 @@ namespace Controllers
 
         private void Quit()
         {
-            Debug.Log("Quit");
             Application.Quit();
         }
     }

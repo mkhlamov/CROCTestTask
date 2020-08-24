@@ -4,21 +4,20 @@ using UnityEngine.UI;
 
 namespace Views.UI
 {
-    public class UIViewGame : UIView
+    public class UIViewFinish : UIView
     {
-        public Action onFinish;
+        public Action onMenuButtonClicked;
         [SerializeField] private Text timeText;
+        [SerializeField] private Text errorsText;
+
+        public void MenuButtonClicked() => onMenuButtonClicked?.Invoke();
 
         /// <summary>
-        /// Invokes action after finish 
-        /// </summary>
-        public void Finished() => onFinish?.Invoke();
-
-        /// <summary>
-        /// Updates time text
+        /// Updates result texts of training
         /// </summary>
         /// <param name="time">Time in seconds</param>
-        public void UpdateTime(float time)
+        /// <param name="errors">Number of errors</param>
+        public void UpdateResults(float time, int errors)
         {
             if (time <= TimeSpan.MaxValue.TotalSeconds)
             {
@@ -29,6 +28,8 @@ namespace Views.UI
             {
                 timeText.text = "Error!!!";
             }
+
+            errorsText.text = errors.ToString();
         }
     }
 }

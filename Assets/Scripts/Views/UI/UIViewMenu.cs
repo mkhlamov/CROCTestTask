@@ -28,9 +28,6 @@ namespace Views.UI
         /// <summary>
         /// Invokes action after clicking quit button
         /// </summary>
-        public void QuitButtonClicked()
-        {
-            onQuitButtonClicked?.Invoke();
-        }
+        public void QuitButtonClicked() => onQuitButtonClicked?.Invoke();
     }
 }
