@@ -262,7 +262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83503109
 GameObject:
@@ -354,7 +354,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &167895953
 GameObject:
@@ -742,7 +742,7 @@ Transform:
   - {fileID: 339707559}
   - {fileID: 1934871805}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &339707558
 GameObject:
@@ -1242,7 +1242,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &597596277
 GameObject:
@@ -1661,6 +1661,7 @@ GameObject:
   - component: {fileID: 811319020}
   - component: {fileID: 811319019}
   - component: {fileID: 811319018}
+  - component: {fileID: 811319021}
   m_Layer: 0
   m_Name: SwitchPart (1)
   m_TagString: Untagged
@@ -1742,6 +1743,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811319016}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &811319021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811319016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98dd45721d14aeabbcfbc29b1a0c79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815609348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,6 +1896,7 @@ GameObject:
   - component: {fileID: 929223764}
   - component: {fileID: 929223763}
   - component: {fileID: 929223762}
+  - component: {fileID: 929223765}
   m_Layer: 0
   m_Name: SwitchPart
   m_TagString: Untagged
@@ -1964,6 +1978,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929223760}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &929223765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929223760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98dd45721d14aeabbcfbc29b1a0c79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &947251185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,7 +2886,7 @@ Transform:
   - {fileID: 759724617}
   - {fileID: 83503110}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1625227489
 GameObject:
@@ -2983,6 +3009,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiRoot: {fileID: 763758224}
+--- !u!1 &1667414816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667414818}
+  - component: {fileID: 1667414817}
+  m_Layer: 0
+  m_Name: ObjectWithAnimationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1667414817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667414816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b53c54edbb84961b32288a6ef4b4360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1667414818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667414816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1682742040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +3273,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1934871805}
   - component: {fileID: 1934871806}
+  - component: {fileID: 1934871808}
+  - component: {fileID: 1934871807}
   m_Layer: 0
   m_Name: Switch
   m_TagString: Untagged
@@ -3247,6 +3318,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1934871807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934871804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0583471c600a4fed8b3bd21805c1709b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1934871808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934871804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802d3a09b3404fce8fd8a3fe90b6db4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2041869926
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,6 +3483,7 @@ GameObject:
   - component: {fileID: 2058029030}
   - component: {fileID: 2058029029}
   - component: {fileID: 2058029028}
+  - component: {fileID: 2058029031}
   m_Layer: 0
   m_Name: SwitchPart
   m_TagString: Untagged
@@ -3469,3 +3565,15 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058029026}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2058029031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058029026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98dd45721d14aeabbcfbc29b1a0c79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
