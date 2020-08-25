@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Misc;
+using Models;
 using UnityEngine;
 
 namespace Controllers
@@ -10,6 +10,8 @@ namespace Controllers
         [SerializeField] private List<ControllerByType> controllers;
         //TODO: make SerializableDictionary
         //[SerializeField] private SerializableDictionary<ControllerType, BaseController> controllers;
+        
+        
 
         private void Start()
         {
@@ -21,10 +23,10 @@ namespace Controllers
             SetController(ControllerType.Menu);
         }
         
-        public void SetController(ControllerType controllerType)
+        public void SetController(ControllerType controllerType, GameData gameData = null)
         {
             DeactivateAllControllers();
-            controllers.Find(x => x.controllerType == controllerType).controller.Activate();
+            controllers.Find(x => x.controllerType == controllerType).controller.Activate(gameData);
         }
 
         private void DeactivateAllControllers()

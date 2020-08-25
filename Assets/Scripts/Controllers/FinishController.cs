@@ -1,13 +1,16 @@
-﻿using Views.UI;
+﻿using Models;
+using Views.UI;
 
 namespace Controllers
 {
     public class FinishController : BaseController<UIRootFinish>
     {
-        public override void Activate()
+        public override void Activate(GameData gameData = null)
         {
-            base.Activate();
+            base.Activate(gameData);
             uiRoot.View.onMenuButtonClicked += OpenMenu;
+            
+            uiRoot.View.UpdateResults(GameData);
         }
 
         public override void Deactivate()

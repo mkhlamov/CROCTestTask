@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,13 +16,12 @@ namespace Views.UI
         /// <summary>
         /// Updates result texts of training
         /// </summary>
-        /// <param name="time">Time in seconds</param>
-        /// <param name="errors">Number of errors</param>
-        public void UpdateResults(float time, int errors)
+        /// <param name="gameData">Time, errors count and model type</param>
+        public void UpdateResults(GameData gameData)
         {
-            if (time <= TimeSpan.MaxValue.TotalSeconds)
+            if (gameData.GameTime <= TimeSpan.MaxValue.TotalSeconds)
             {
-                var ts = TimeSpan.FromSeconds(time);
+                var ts = TimeSpan.FromSeconds(gameData.GameTime);
                 timeText.text = ts.ToString(@"mm\.ss\:fff");
             }
             else
@@ -29,7 +29,7 @@ namespace Views.UI
                 timeText.text = "Error!!!";
             }
 
-            errorsText.text = errors.ToString();
+            errorsText.text = gameData.ErrorsCount.ToString();
         }
     }
 }

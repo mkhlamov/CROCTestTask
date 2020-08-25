@@ -1,4 +1,4 @@
-﻿namespace Misc
+﻿namespace Models
 {
     public enum ModelType
     {

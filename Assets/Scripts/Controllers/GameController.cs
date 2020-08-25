@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 using UnityEngine;
 using Views.UI;
 
@@ -6,21 +7,18 @@ namespace Controllers
 {
     public class GameController : BaseController<UIRootGame>
     {
-        private float _gameTime = 0f;
         public void Update()
         {
-            _gameTime += Time.deltaTime;
-            uiRoot.View.UpdateTime(_gameTime);
+            GameData.GameTime += Time.deltaTime;
+            uiRoot.View.UpdateTime(GameData.GameTime);
         }
 
-        public override void Activate()
+        public override void Activate(GameData gameData = null)
         {
-            base.Activate();
+            base.Activate(gameData);
 
             uiRoot.View.onFinish += OnGameFinish;
-
-            _gameTime = 0f;
-            uiRoot.View.UpdateTime(_gameTime);
+            uiRoot.View.UpdateTime(GameData.GameTime);
         }
 
         public override void Deactivate()
@@ -32,7 +30,7 @@ namespace Controllers
 
         private void OnGameFinish()
         {
-            MainController.SetController(ControllerType.Finish);
+            MainController.SetController(ControllerType.Finish, GameData);
         }
     }
 }

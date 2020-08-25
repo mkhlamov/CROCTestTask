@@ -1,5 +1,5 @@
 ﻿using System;
-using Misc;
+using Models;
 using UnityEngine;
 using Views.UI;
 
@@ -7,7 +7,7 @@ namespace Controllers
 {
     public class MenuController : BaseController<UIRootMenu>
     {
-        public override void Activate()
+        public override void Activate(GameData gameData = null)
         {
             base.Activate();
             
@@ -29,7 +29,12 @@ namespace Controllers
         {
             return () =>
             {
-                MainController.SetController(ControllerType.Game);
+                MainController.SetController(ControllerType.Game, new GameData()
+                {
+                    GameTime = 0f,
+                    ErrorsCount = 0,
+                    ModelType = modelType
+                });
             };
 
         }
