@@ -17,7 +17,17 @@ namespace Views
         private static readonly int TurnOff = Animator.StringToHash("TurnOff");
 
         private ClickableObjectsParent _parent;
-        public ClickableObjectsParent Parent => _parent;
+        public ClickableObjectsParent Parent {
+            get
+            {
+                if (_parent == null)
+                {
+                    _parent = GetComponent<ClickableObjectsParent>();
+                }
+
+                return _parent;
+            }
+        }
         
         #endregion
         

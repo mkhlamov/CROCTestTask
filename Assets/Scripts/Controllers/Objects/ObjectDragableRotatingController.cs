@@ -24,7 +24,7 @@ namespace Controllers.Objects
         
         private void OnDisable()
         {
-            foreach (var obj in _dragableRotatingObjects)
+            foreach (var obj in _dragableRotatingObjects.Where(obj => obj != null))
             {
                 obj.Parent.onDrag -= obj.Rotate;
             }

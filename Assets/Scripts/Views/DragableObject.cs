@@ -16,13 +16,15 @@ namespace Views
         private void OnMouseDrag()
         {
             var offset = Input.mousePosition - _prevPos;
-            _parent.OnDrag(new Vector2(offset.x / Screen.width, offset.y / Screen.height));
+            _parent.OnDrag(new Vector2(offset.x / Screen.width, offset.y / Screen.height),
+                Input.mousePosition, this);
             _prevPos = Input.mousePosition;
         }
 
         private void OnMouseDown()
         {
             _prevPos = Input.mousePosition;
+            _parent.OnStartDrag(_prevPos, this);
         }
     }
 }

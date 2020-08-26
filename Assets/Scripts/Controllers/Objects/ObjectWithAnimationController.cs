@@ -24,7 +24,7 @@ namespace Controllers.Objects
 
         private void OnDisable()
         {
-            foreach (var obj in _objectWithAnimationViews)
+            foreach (var obj in _objectWithAnimationViews.Where(obj => obj != null))
             {
                 obj.Parent.onClick -= obj.ToggleObject;
             }
