@@ -17,15 +17,8 @@ MonoBehaviour:
   modelPrefab: {fileID: 2260457074590576790, guid: 5fdbc7eccd235bc448d9911b15fca824,
     type: 3}
   deviceStates:
-  - devicePart: {fileID: 11400000, guid: 3fa28f8c373fc284fad66670fb4b9eb0, type: 2}
+  - deviceName: Switch
     state: 0
-  - devicePart: {fileID: 11400000, guid: 686425e404557ad448febbff27c15cbe, type: 2}
+  - deviceName: Switch
     state: 1
-  - devicePart: {fileID: 11400000, guid: 1bbcc75fde3daeb4fab1dc07a73bc434, type: 2}
-    state: 1
-  - devicePart: {fileID: 11400000, guid: 1bbcc75fde3daeb4fab1dc07a73bc434, type: 2}
-    state: 0
-  - devicePart: {fileID: 11400000, guid: 686425e404557ad448febbff27c15cbe, type: 2}
-    state: 0
-  - devicePart: {fileID: 11400000, guid: 3fa28f8c373fc284fad66670fb4b9eb0, type: 2}
-    state: 1
+  modelDefaultState: {fileID: 11400000, guid: aff9878044e41504c9d60f0c9fdd974f, type: 2}

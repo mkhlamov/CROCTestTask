@@ -9,6 +9,9 @@ namespace Views
         public MovableObject movableObjectSO;
         public Transform openedTransform;
         public Transform closedTransform;
+
+        [SerializeField] private bool allowMovementAlongAxisX = true;
+        [SerializeField] private bool allowMovementAlongAxisY = true;
         
         private DragableObjectParent _parent;
 
@@ -51,7 +54,18 @@ namespace Views
         /// <param name="dragableObject">Object being dragged by user</param>
         public void Move(Vector2 offset, Vector3 newMousePosition, DragableObject dragableObject)
         {
-            transform.position = GetMouseWorldPoint(newMousePosition) + _offsetToObj;
+            var pos = GetMouseWorldPoint(newMousePosition) + _offsetToObj;
+            if (!allowMovementAlongAxisX)
+            {
+                pos = new Vector3(transform.position.x, pos.y, pos.z);
+            }
+
+            if (!allowMovementAlongAxisY)
+            {
+                pos = new Vector3(pos.x, transform.position.y, pos.z);
+            }
+
+            transform.position = pos;
 
             if ((transform.position - _startPosition).magnitude >= movableObjectSO.distanceToClosed && _isOn)
             {

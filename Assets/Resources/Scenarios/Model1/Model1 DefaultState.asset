@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Model1 DefaultState
   m_EditorClassIdentifier: 
   deviceStates:
-  - devicePart: {fileID: 11400000, guid: 3fa28f8c373fc284fad66670fb4b9eb0, type: 2}
+  - deviceName: Switch
     state: 1
-  - devicePart: {fileID: 11400000, guid: 686425e404557ad448febbff27c15cbe, type: 2}
+  - deviceName: Gave Valve
     state: 0
-  - devicePart: {fileID: 11400000, guid: 1bbcc75fde3daeb4fab1dc07a73bc434, type: 2}
+  - deviceName: Cap
     state: 0

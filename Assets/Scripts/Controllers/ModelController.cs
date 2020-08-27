@@ -29,14 +29,14 @@ namespace Controllers
             _model = model;
 
             _deviceParts = _model.GetComponentsInChildren<ObjectView>().ToList();
-            var defaultDeviceParts = scenario.modelDefaultState.deviceStates.Select(x => x.devicePart.deviceName).ToList();
+            var defaultDeviceParts = scenario.modelDefaultState.deviceStates.Select(x => x.deviceName).ToList();
 
             foreach (var devicePart in _deviceParts)
             {
                 if (defaultDeviceParts.Contains(devicePart.gameObject.name))
                 {
                     devicePart.TurnObjectToState(scenario.modelDefaultState.deviceStates
-                        .First(x => x.devicePart.deviceName == devicePart.gameObject.name).state);
+                        .First(x => x.deviceName == devicePart.gameObject.name).state);
                 }
                 devicePart.OnDeviceStateChanged += OnDevicePartStateChanged;
             }
@@ -55,10 +55,10 @@ namespace Controllers
         {
             Debug.Log($"OnDevicePartStateChanged {go.name} {state}");
             var devicePartState = _currentScenario.deviceStates[_scenarioStep];
-            Debug.Log($"{devicePartState.devicePart.deviceName} {devicePartState.state}");
+            Debug.Log($"{devicePartState.deviceName} {devicePartState.state}");
             
             // User made correct action
-            if (devicePartState.devicePart.deviceName == go.name &&
+            if (devicePartState.deviceName == go.name &&
                 devicePartState.state == state)
             {
                 _scenarioStep++;

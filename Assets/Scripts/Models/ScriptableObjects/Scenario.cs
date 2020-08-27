@@ -19,7 +19,7 @@ namespace Models.ScriptableObjects
     [Serializable]
     public class DevicePartState
     {
-        public DevicePart devicePart;
+        public string deviceName;
         public bool state;
     }
 }
