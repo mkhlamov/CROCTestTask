@@ -1,4 +1,5 @@
-﻿using Models.ScriptableObjects;
+﻿using System;
+using Models.ScriptableObjects;
 using UnityEngine;
 
 namespace Views
@@ -20,6 +21,16 @@ namespace Views
             }
         }
 
+        private void OnEnable()
+        {
+            Parent.onDrag += Rotate;
+        }
+        
+        private void OnDisable()
+        {
+            Parent.onDrag -= Rotate;
+        }
+
         private float _currentRotation = 0f;
 
         public void Rotate(Vector2 offset, Vector3 newMousePosition, DragableObject o)
@@ -27,8 +38,29 @@ namespace Views
             _currentRotation -= Time.deltaTime * offset.x * 10000;
             _currentRotation = Mathf.Clamp(_currentRotation, rotatableObjectSO.minAngle, rotatableObjectSO.maxAngle); 
             
-            if (_currentRotation > 0) Debug.Log(_currentRotation);
-            
+            SetRotation();
+
+            if (_currentRotation == rotatableObjectSO.closedAngle || _currentRotation == rotatableObjectSO.openedAngle)
+            {
+                _isOn = _currentRotation == rotatableObjectSO.openedAngle;
+                NotifyOnStateChanged();
+            }
+        }
+
+        public override void TurnObjectOn()
+        {
+            _currentRotation = rotatableObjectSO.openedAngle;
+            SetRotation();
+        }
+
+        public override void TurnObjectOff()
+        {
+            _currentRotation = rotatableObjectSO.closedAngle;
+            SetRotation();
+        }
+
+        private void SetRotation()
+        {
             transform.rotation = Quaternion.Euler(transform.rotation.x, _currentRotation, transform.rotation.z);
         }
     }

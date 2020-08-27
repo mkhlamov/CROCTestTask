@@ -8,6 +8,7 @@ namespace Controllers
     public class GameController : BaseController<UIRootGame>
     {
         [SerializeField] private Transform modelParent;
+        [SerializeField] private ModelController modelController;
         private GameObject _instantiatedModel;
         
         public void Update()
@@ -27,6 +28,9 @@ namespace Controllers
             {
                 _instantiatedModel = Instantiate(gameData.Scenario.modelPrefab, modelParent);
             }
+
+            modelController.OnScenarioCompleted += OnGameFinish;
+            modelController.Init(gameData.Scenario, _instantiatedModel);
         }
 
         public override void Deactivate()
@@ -38,11 +42,23 @@ namespace Controllers
             {
                 Destroy(_instantiatedModel);
             }
+            modelController.OnScenarioCompleted -= OnGameFinish;
         }
 
         private void OnGameFinish()
         {
             MainController.SetController(ControllerType.Finish, GameData);
+        }
+        
+        private void OnGameFinish(int errorsCount)
+        {
+            UpdateErrorsCount(errorsCount);
+            OnGameFinish();
+        }
+        
+        private void UpdateErrorsCount(int errorsCount)
+        {
+            GameData.ErrorsCount = errorsCount;
         }
     }
 }

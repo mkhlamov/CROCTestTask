@@ -14,7 +14,7 @@ namespace Controllers.Objects
             _dragableRotatingObjects = FindObjectsOfType<RotatableObjectView>().ToList();
         }
 
-        private void OnEnable()
+        /*private void OnEnable()
         {
             foreach (var obj in _dragableRotatingObjects)
             {
@@ -28,6 +28,6 @@ namespace Controllers.Objects
             {
                 obj.Parent.onDrag -= obj.Rotate;
             }
-        }
+        }*/
     }
 }

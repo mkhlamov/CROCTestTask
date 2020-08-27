@@ -13,6 +13,7 @@ namespace Models.ScriptableObjects
         public string modelName;
         public GameObject modelPrefab;
         public List<DevicePartState> deviceStates;
+        public ModelDefaultState modelDefaultState;
     }
     
     [Serializable]

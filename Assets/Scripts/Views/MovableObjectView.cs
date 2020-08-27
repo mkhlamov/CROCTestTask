@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using Models.ScriptableObjects;
+using UnityEngine;
 
 namespace Views
 {
     [RequireComponent(typeof(DragableObjectParent))]
     public class MovableObjectView : ObjectView
     {
+        public MovableObject movableObjectSO;
+        public Transform openedTransform;
+        public Transform closedTransform;
+        
         private DragableObjectParent _parent;
 
         public DragableObjectParent Parent
@@ -22,6 +27,21 @@ namespace Views
 
         private Camera _camera => Camera.main;
         private Vector3 _offsetToObj;
+        private Vector3 _startPosition;
+        
+        private void OnEnable()
+        {
+            Parent.onDrag += Move;
+            Parent.onMouseDown += OnStartMove;
+            _startPosition = transform.position;
+            _isOn = GetDistanceToStart() < movableObjectSO.distanceToClosed;
+        }
+        
+        private void OnDisable()
+        {
+            Parent.onDrag -= Move;
+            Parent.onMouseDown -= OnStartMove;
+        }
 
         /// <summary>
         /// Moves parent object when dragableObject is dragged
@@ -32,6 +52,28 @@ namespace Views
         public void Move(Vector2 offset, Vector3 newMousePosition, DragableObject dragableObject)
         {
             transform.position = GetMouseWorldPoint(newMousePosition) + _offsetToObj;
+
+            if ((transform.position - _startPosition).magnitude >= movableObjectSO.distanceToClosed && _isOn)
+            {
+                _isOn = false;
+                NotifyOnStateChanged();
+            } else if ((transform.position - _startPosition).magnitude < movableObjectSO.distanceToClosed && !_isOn)
+            {
+                _isOn = true;
+                NotifyOnStateChanged();
+            }
+        }
+        
+        public override void TurnObjectOn()
+        {
+            transform.position = openedTransform.position;
+            _isOn = true;
+        }
+
+        public override void TurnObjectOff()
+        {
+            transform.position = closedTransform.position;
+            _isOn = false;
         }
 
         /// <summary>
@@ -48,6 +90,11 @@ namespace Views
         {
             return _camera.ScreenToWorldPoint(new Vector3(
                 mousePosition.x, mousePosition.y, _camera.nearClipPlane));
+        }
+
+        private float GetDistanceToStart()
+        {
+            return (transform.position - _startPosition).magnitude;
         }
     }
 }

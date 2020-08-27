@@ -1,29 +1,37 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Views
 {
     /// <summary>
     /// Base class for object views
     /// </summary>
-    public class ObjectView : MonoBehaviour
+    public abstract class ObjectView : MonoBehaviour
     {
+        public Action<GameObject, bool> OnDeviceStateChanged;
+        
         protected bool _isOn = true;
         public bool IsOn => _isOn;
-        
-        /// <summary>
-        /// Shows Object View
-        /// </summary>
-        public virtual void Show()
-        {
-            gameObject.SetActive(true);
-        }
 
         /// <summary>
-        /// Hides Object View
+        /// Turns Object View on
         /// </summary>
-        public virtual void Hide()
+        public abstract void TurnObjectOn();
+
+        /// <summary>
+        /// Turn Object View off
+        /// </summary>
+        public abstract void TurnObjectOff();
+
+        public void TurnObjectToState(bool e)
         {
-            gameObject.SetActive(false);
+            if (e) TurnObjectOn();
+            else TurnObjectOff();
+        }
+
+        public void NotifyOnStateChanged()
+        {
+            OnDeviceStateChanged?.Invoke(gameObject, _isOn);
         }
     }
 }

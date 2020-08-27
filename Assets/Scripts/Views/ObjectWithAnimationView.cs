@@ -56,22 +56,23 @@ namespace Views
             else TurnObjectOn();
         }
 
-        #region Private methods
-        
-        private void TurnObjectOn()
+        public override void TurnObjectOn()
         {
             if (_isOn) return;
             HandleAnimator(TurnOn);
             _isOn = true;
+            NotifyOnStateChanged();
         }
-        
-        private void TurnObjectOff()
+
+        public override void TurnObjectOff()
         {
             if (!_isOn) return;
             HandleAnimator(TurnOff);
             _isOn = false;
+            NotifyOnStateChanged();
         }
-
+        
+        #region Private methods
         private void HandleAnimator(int trigger)
         {
             if (_animator) {_animator.SetTrigger(trigger); }

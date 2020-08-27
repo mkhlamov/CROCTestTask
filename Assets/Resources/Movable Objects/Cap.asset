@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd53be18ed54ec38a86015affcf0706, type: 3}
-  m_Name: Gate Valve
+  m_Script: {fileID: 11500000, guid: 2837835834ef4c1eac03b3fdf2ea4c96, type: 3}
+  m_Name: Cap
   m_EditorClassIdentifier: 
-  minAngle: -270
-  maxAngle: 0
-  openedAngle: 0
-  closedAngle: -270
+  distanceToClosed: 0.659
