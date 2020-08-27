@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287c74df9b83476a853c1a764f77b3e1, type: 3}
+  m_Name: Model1 DefaultState
+  m_EditorClassIdentifier: 
+  deviceStates:
+  - devicePart: {fileID: 11400000, guid: 3fa28f8c373fc284fad66670fb4b9eb0, type: 2}
+    state: 1
+  - devicePart: {fileID: 11400000, guid: 686425e404557ad448febbff27c15cbe, type: 2}
+    state: 0
+  - devicePart: {fileID: 11400000, guid: 1bbcc75fde3daeb4fab1dc07a73bc434, type: 2}
+    state: 0

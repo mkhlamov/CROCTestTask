@@ -7,6 +7,9 @@ namespace Controllers
 {
     public class GameController : BaseController<UIRootGame>
     {
+        [SerializeField] private Transform modelParent;
+        private GameObject _instantiatedModel;
+        
         public void Update()
         {
             GameData.GameTime += Time.deltaTime;
@@ -19,6 +22,11 @@ namespace Controllers
 
             uiRoot.View.onFinish += OnGameFinish;
             uiRoot.View.UpdateTime(GameData.GameTime);
+
+            if (gameData.Scenario.modelPrefab != null)
+            {
+                _instantiatedModel = Instantiate(gameData.Scenario.modelPrefab, modelParent);
+            }
         }
 
         public override void Deactivate()
@@ -26,6 +34,10 @@ namespace Controllers
             base.Deactivate();
             
             uiRoot.View.onFinish -= OnGameFinish;
+            if (_instantiatedModel != null)
+            {
+                Destroy(_instantiatedModel);
+            }
         }
 
         private void OnGameFinish()

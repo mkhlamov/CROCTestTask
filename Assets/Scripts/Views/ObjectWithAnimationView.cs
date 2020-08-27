@@ -30,12 +30,25 @@ namespace Views
         }
         
         #endregion
-        
-        private void Awake()
+
+        #region Monobehaviour methods
+
+        private void Start()
         {
             _animator = GetComponent<Animator>();
-            _parent = GetComponent<ClickableObjectsParent>();
         }
+
+        private void OnEnable()
+        {
+            Parent.onClick += ToggleObject;
+        }
+
+        private void OnDisable()
+        {
+            Parent.onClick -= ToggleObject;
+        }
+        
+        #endregion
 
         public void ToggleObject()
         {

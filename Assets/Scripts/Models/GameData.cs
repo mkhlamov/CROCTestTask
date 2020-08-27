@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Models.ScriptableObjects;
 
 namespace Models
 {
@@ -10,7 +11,7 @@ namespace Models
         // Number of user errors
         public int ErrorsCount = 0;
 
-        // Current model in work
-        public ModelType ModelType = ModelType.None;
+        // Current scenario in work
+        public Scenario Scenario = null;
     }
 }
