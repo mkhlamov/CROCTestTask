@@ -53,9 +53,7 @@ namespace Controllers
 
         private void OnDevicePartStateChanged(GameObject go, bool state)
         {
-            Debug.Log($"OnDevicePartStateChanged {go.name} {state}");
             var devicePartState = _currentScenario.deviceStates[_scenarioStep];
-            Debug.Log($"{devicePartState.deviceName} {devicePartState.state}");
             
             // User made correct action
             if (devicePartState.deviceName == go.name &&
