@@ -12,15 +12,10 @@ namespace Views.UI
 
         public void Init(List<DevicePartState> scenarioSteps)
         {
-            string StateToStr(bool e)
-            {
-                return e ? "on" : "off";
-            }
-            
             var res = new StringBuilder();
             for (var i = 0; i < scenarioSteps.Count; i++)
             {
-                res.AppendLine($"{i + 1}. Turn {scenarioSteps[i].deviceName} {StateToStr(scenarioSteps[i].state)}");
+                res.AppendLine($"{i + 1}. {scenarioSteps[i].ToString()}");
             }
 
             hint.text = res.ToString();

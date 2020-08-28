@@ -21,5 +21,15 @@ namespace Models.ScriptableObjects
     {
         public string deviceName;
         public bool state;
+
+        public override string ToString()
+        {
+            string StateToStr(bool e)
+            {
+                return e ? "on" : "off";
+            }
+
+            return $"Turn {deviceName} {StateToStr(state)}";
+        }
     }
 }

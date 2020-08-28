@@ -8,7 +8,7 @@ namespace Views
     /// </summary>
     public abstract class ObjectView : MonoBehaviour
     {
-        public Action<GameObject, bool> OnDeviceStateChanged;
+        public Action<ObjectView, bool> OnDeviceStateChanged;
         
         protected bool _isOn = true;
         public bool IsOn => _isOn;
@@ -16,23 +16,39 @@ namespace Views
         /// <summary>
         /// Turns Object View on
         /// </summary>
-        public abstract void TurnObjectOn();
+        protected virtual void TurnObjectOn(bool notify = true)
+        {
+            if (notify) NotifyOnStateChanged();
+        }
 
         /// <summary>
         /// Turn Object View off
         /// </summary>
-        public abstract void TurnObjectOff();
+        protected virtual void TurnObjectOff(bool notify = true)
+        {
+            if (notify) NotifyOnStateChanged();
+        }
 
         public void TurnObjectToState(bool e)
         {
-            _isOn = e;
             if (e) TurnObjectOn();
             else TurnObjectOff();
         }
 
+        public void ToggleObject()
+        {
+            ToggleObjectWithNotification(true);
+        }
+
+        public void ToggleObjectWithNotification(bool notify = true)
+        {
+            if (_isOn) TurnObjectOff(notify);
+            else TurnObjectOn(notify);
+        }
+
         protected void NotifyOnStateChanged()
         {
-            OnDeviceStateChanged?.Invoke(gameObject, _isOn);
+            OnDeviceStateChanged?.Invoke(this, _isOn);
         }
     }
 }

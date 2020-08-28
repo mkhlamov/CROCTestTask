@@ -13,7 +13,9 @@ namespace Controllers
         /// <summary>
         /// Action on scenario end with number of errors
         /// </summary>
-        public Action<int> OnScenarioCompleted;
+        public Action<int> onScenarioCompleted;
+
+        public Action onUserMistake;
         
         private Scenario _currentScenario;
         [SerializeField] private List<ObjectView> _deviceParts;
@@ -42,21 +44,29 @@ namespace Controllers
             }
         }
 
+        /// <summary>
+        /// Return next correct DevicePartState
+        /// </summary>
+        public DevicePartState GetNextStep()
+        {
+            return _currentScenario.deviceStates[_scenarioStep];
+        }
+
         private void Finalize()
         {
-            OnScenarioCompleted?.Invoke(_errorsCount);
+            onScenarioCompleted?.Invoke(_errorsCount);
             foreach (var devicePart in _deviceParts)
             {
                 devicePart.OnDeviceStateChanged -= OnDevicePartStateChanged;
             }
         }
 
-        private void OnDevicePartStateChanged(GameObject go, bool state)
+        private void OnDevicePartStateChanged(ObjectView objectView, bool state)
         {
             var devicePartState = _currentScenario.deviceStates[_scenarioStep];
             
             // User made correct action
-            if (devicePartState.deviceName == go.name &&
+            if (devicePartState.deviceName == objectView.gameObject.name &&
                 devicePartState.state == state)
             {
                 _scenarioStep++;
@@ -64,6 +74,8 @@ namespace Controllers
             else
             {
                 _errorsCount++;
+                objectView.ToggleObjectWithNotification(false);
+                onUserMistake?.Invoke();
             }
 
             if (_scenarioStep == _currentScenario.deviceStates.Count)

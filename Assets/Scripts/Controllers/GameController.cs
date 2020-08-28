@@ -11,7 +11,10 @@ namespace Controllers
         [SerializeField] private Transform modelParent;
         [SerializeField] private ModelController modelController;
         [SerializeField] private ScenarioInfoView scenarioInfoView;
+        
         private GameObject _instantiatedModel;
+        private const string MistakeTextStart = "You made a mistake!\n";
+        private const string MistakeTextEnd = "Do you want to retry or continue?";
         
         public void Update()
         {
@@ -31,7 +34,8 @@ namespace Controllers
                 _instantiatedModel = Instantiate(gameData.Scenario.modelPrefab, modelParent);
             }
 
-            modelController.OnScenarioCompleted += OnGameFinish;
+            modelController.onScenarioCompleted += OnGameFinish;
+            modelController.onUserMistake += OnUserMistake;
             modelController.Init(gameData.Scenario, _instantiatedModel);
             
             scenarioInfoView.Init(gameData.Scenario.deviceStates);
@@ -42,11 +46,16 @@ namespace Controllers
             base.Deactivate();
             
             uiRoot.View.onFinish -= OnGameFinish;
+            DestroyScenarioModel();
+            modelController.onScenarioCompleted -= OnGameFinish;
+        }
+
+        private void DestroyScenarioModel()
+        {
             if (_instantiatedModel != null)
             {
                 Destroy(_instantiatedModel);
             }
-            modelController.OnScenarioCompleted -= OnGameFinish;
         }
 
         private void OnGameFinish()
@@ -65,6 +74,34 @@ namespace Controllers
             GameData.ErrorsCount = errorsCount;
         }
         
-        
+        private void OnUserMistake()
+        {
+            uiRoot.UserFailView.Init(MistakeTextStart
+                                     + " Next step: "
+                                     + modelController.GetNextStep().ToString()
+                                     + "\n"
+                                     + MistakeTextEnd,
+                RestartScenario,
+                () =>
+                {
+                    uiRoot.UserFailView.Hide();                    
+                });
+            uiRoot.UserFailView.Show();
+        }
+
+        private void RestartScenario()
+        {
+            DestroyScenarioModel();
+            GameData.GameTime = 0f;
+            GameData.ErrorsCount = 0;
+            FinalizeUserFailView();
+            Activate(GameData);
+        }
+
+        private void FinalizeUserFailView()
+        {
+            uiRoot.UserFailView.Finalize();
+            uiRoot.UserFailView.Hide();
+        }
     }
 }

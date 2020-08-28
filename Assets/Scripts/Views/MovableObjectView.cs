@@ -75,16 +75,18 @@ namespace Views
             }
         }
         
-        public override void TurnObjectOn()
+        protected override void TurnObjectOn(bool notify = true)
         {
             transform.position = openedTransform.position;
             _isOn = true;
+            base.TurnObjectOn(notify);
         }
 
-        public override void TurnObjectOff()
+        protected override void TurnObjectOff(bool notify = true)
         {
             transform.position = closedTransform.position;
             _isOn = false;
+            base.TurnObjectOff(notify);
         }
 
         /// <summary>

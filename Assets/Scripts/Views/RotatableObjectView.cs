@@ -48,16 +48,20 @@ namespace Views
             }
         }
 
-        public override void TurnObjectOn()
+        protected override void TurnObjectOn(bool notify = true)
         {
+            _isOn = true;
             _currentRotation = rotatableObjectSO.openedAngle;
             SetRotation();
+            base.TurnObjectOn(notify);
         }
 
-        public override void TurnObjectOff()
+        protected override void TurnObjectOff(bool notify = true)
         {
+            _isOn = false;
             _currentRotation = rotatableObjectSO.closedAngle;
             SetRotation();
+            base.TurnObjectOn(notify);
         }
 
         private void SetRotation()
