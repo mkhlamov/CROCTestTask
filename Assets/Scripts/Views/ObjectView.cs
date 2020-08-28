@@ -25,11 +25,12 @@ namespace Views
 
         public void TurnObjectToState(bool e)
         {
+            _isOn = e;
             if (e) TurnObjectOn();
             else TurnObjectOff();
         }
 
-        public void NotifyOnStateChanged()
+        protected void NotifyOnStateChanged()
         {
             OnDeviceStateChanged?.Invoke(gameObject, _isOn);
         }

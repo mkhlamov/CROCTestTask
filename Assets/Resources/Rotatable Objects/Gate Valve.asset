@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minAngle: -270
   maxAngle: 0
-  openedAngle: 0
-  closedAngle: -270
+  openedAngle: -270
+  closedAngle: 0

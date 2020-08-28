@@ -33,21 +33,18 @@ namespace Views
 
         private float _currentRotation = 0f;
 
-        public void Rotate(Vector2 offset, Vector3 newMousePosition, DragableObject o)
+        private void Rotate(Vector2 offset, Vector3 newMousePosition, DragableObject o)
         {
             _currentRotation -= Time.deltaTime * offset.x * 10000;
             _currentRotation = Mathf.Clamp(_currentRotation, rotatableObjectSO.minAngle, rotatableObjectSO.maxAngle);
             
             SetRotation();
-            if (_currentRotation == rotatableObjectSO.closedAngle ||
-                _currentRotation == rotatableObjectSO.openedAngle)
+            
+            if ((_isOn && _currentRotation == rotatableObjectSO.closedAngle) ||
+                (!_isOn && _currentRotation == rotatableObjectSO.openedAngle))
             {
-                var newState = _currentRotation == rotatableObjectSO.openedAngle;
-                if (newState != _isOn)
-                {
-                    _isOn = !_isOn;
-                    NotifyOnStateChanged();
-                }
+                _isOn = !_isOn;
+                NotifyOnStateChanged();
             }
         }
 

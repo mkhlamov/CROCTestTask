@@ -67,13 +67,10 @@ namespace Views
 
             transform.position = pos;
 
-            if ((transform.position - _startPosition).magnitude >= movableObjectSO.distanceToClosed && _isOn)
+            if (((transform.position - _startPosition).magnitude >= movableObjectSO.distanceToClosed && !_isOn) ||
+                ((transform.position - _startPosition).magnitude < movableObjectSO.distanceToClosed && _isOn))
             {
-                _isOn = false;
-                NotifyOnStateChanged();
-            } else if ((transform.position - _startPosition).magnitude < movableObjectSO.distanceToClosed && !_isOn)
-            {
-                _isOn = true;
+                _isOn = !_isOn;
                 NotifyOnStateChanged();
             }
         }
@@ -102,8 +99,9 @@ namespace Views
 
         private Vector3 GetMouseWorldPoint(Vector3 mousePosition)
         {
-            return _camera.ScreenToWorldPoint(new Vector3(
+            var worldPos = _camera.ScreenToWorldPoint(new Vector3(
                 mousePosition.x, mousePosition.y, _camera.nearClipPlane));
+            return new Vector3(worldPos.x, worldPos.y, transform.position.z);
         }
 
         private float GetDistanceToStart()

@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0366513b274bf1927b3b66454d0d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isOn: 1
   rotatableObjectSO: {fileID: 11400000, guid: 81f6809d07f46ca4da3e2bd5d935a0d0, type: 2}
 --- !u!1 &2260457074128906895
 GameObject:
@@ -795,6 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0583471c600a4fed8b3bd21805c1709b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isOn: 1
 --- !u!1 &2260457075256670525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,9 +1055,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113756b5ca4e4fe3a91f576c634dc6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isOn: 1
   movableObjectSO: {fileID: 11400000, guid: e9a84014c235049408572a5846b47db0, type: 2}
   openedTransform: {fileID: 4710901745895718416}
   closedTransform: {fileID: 9058942336457727055}
+  allowMovementAlongAxisX: 0
+  allowMovementAlongAxisY: 1
 --- !u!1 &2569824348554337005
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,14 @@ MonoBehaviour:
   deviceStates:
   - deviceName: Switch
     state: 0
+  - deviceName: Gate Valve
+    state: 1
+  - deviceName: Cap
+    state: 1
+  - deviceName: Cap
+    state: 0
+  - deviceName: Gate Valve
+    state: 0
   - deviceName: Switch
     state: 1
   modelDefaultState: {fileID: 11400000, guid: aff9878044e41504c9d60f0c9fdd974f, type: 2}
