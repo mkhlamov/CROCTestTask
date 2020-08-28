@@ -4,7 +4,7 @@ using Models.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Views
+namespace Views.UI
 {
     public class ScenarioInfoView : MonoBehaviour
     {
