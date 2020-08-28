@@ -1,6 +1,7 @@
 ﻿using System;
 using Models;
 using UnityEngine;
+using Views;
 using Views.UI;
 
 namespace Controllers
@@ -9,6 +10,7 @@ namespace Controllers
     {
         [SerializeField] private Transform modelParent;
         [SerializeField] private ModelController modelController;
+        [SerializeField] private ScenarioInfoView scenarioInfoView;
         private GameObject _instantiatedModel;
         
         public void Update()
@@ -31,6 +33,8 @@ namespace Controllers
 
             modelController.OnScenarioCompleted += OnGameFinish;
             modelController.Init(gameData.Scenario, _instantiatedModel);
+            
+            scenarioInfoView.Init(gameData.Scenario.deviceStates);
         }
 
         public override void Deactivate()
@@ -60,5 +64,7 @@ namespace Controllers
         {
             GameData.ErrorsCount = errorsCount;
         }
+        
+        
     }
 }
