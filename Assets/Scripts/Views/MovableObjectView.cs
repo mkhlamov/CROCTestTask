@@ -1,5 +1,6 @@
 ﻿using Models.ScriptableObjects;
 using UnityEngine;
+using Views.InteractableObjects;
 
 namespace Views
 {

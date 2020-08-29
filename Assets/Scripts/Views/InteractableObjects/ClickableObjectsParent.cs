@@ -1,9 +1,8 @@
 ﻿using System;
-using UnityEngine;
 
-namespace Views
+namespace Views.InteractableObjects
 {
-    public class ClickableObjectsParent : MonoBehaviour
+    public class ClickableObjectsParent : BaseInteractableObjectParent
     {
         public Action onClick;
         public void OnClick() => onClick?.Invoke();

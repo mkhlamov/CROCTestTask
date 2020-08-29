@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Views
+namespace Views.InteractableObjects
 {
-    public class DragableObjectParent : MonoBehaviour
+    public class DragableObjectParent : BaseInteractableObjectParent
     {
         public Action<Vector2, Vector3, DragableObject> onDrag;
         public Action<Vector3, DragableObject> onMouseDown;

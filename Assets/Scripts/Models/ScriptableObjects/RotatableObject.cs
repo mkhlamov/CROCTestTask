@@ -14,5 +14,14 @@ namespace Models.ScriptableObjects
         public float openedAngle;
         [Range(-360, 360)]
         public float closedAngle;
+
+        public RotationAxis rotationAxis;
+    }
+    
+    public enum RotationAxis
+    {
+        X,
+        Y,
+        Z
     }
 }
