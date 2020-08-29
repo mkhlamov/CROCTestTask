@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Views
 {
@@ -14,6 +15,7 @@ namespace Views
 
         private void OnMouseDown()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             _parent.OnClick();
         }
     }

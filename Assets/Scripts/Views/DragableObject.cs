@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Views
 {
@@ -15,6 +16,7 @@ namespace Views
 
         private void OnMouseDrag()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             var offset = Input.mousePosition - _prevPos;
             _parent.OnDrag(new Vector2(offset.x / Screen.width, offset.y / Screen.height),
                 Input.mousePosition, this);
@@ -23,6 +25,7 @@ namespace Views
 
         private void OnMouseDown()
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             _prevPos = Input.mousePosition;
             _parent.OnStartDrag(_prevPos, this);
         }
