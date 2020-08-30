@@ -15,6 +15,19 @@ namespace Views
         #region Private variables
         
         private Animator _animator;
+
+        private Animator Animator
+        {
+            get
+            {
+                if (_animator == null)
+                {
+                    _animator = GetComponent<Animator>();
+                }
+
+                return _animator;
+            }
+        }
         private static readonly int TurnOn = Animator.StringToHash("TurnOn");
         private static readonly int TurnOff = Animator.StringToHash("TurnOff");
 
@@ -30,15 +43,10 @@ namespace Views
                 return _parent;
             }
         }
-        
+
         #endregion
 
         #region Monobehaviour methods
-
-        private void Start()
-        {
-            _animator = GetComponent<Animator>();
-        }
 
         private void OnEnable()
         {
@@ -71,19 +79,17 @@ namespace Views
         #region Private methods
         private IEnumerator HandleAnimator(int trigger)
         {
-            if (!_animator) yield break;
-
             while (IsAnimatorPlaying())
             {
                 yield return null;
             }
-            _animator.SetTrigger(trigger);
+            Animator.SetTrigger(trigger);
         }
 
         private bool IsAnimatorPlaying()
         {
-            return _animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1 ||
-                   _animator.IsInTransition(0);
+            return Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1 ||
+                   Animator.IsInTransition(0);
         }
         
         #endregion
