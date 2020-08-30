@@ -77,7 +77,7 @@ namespace Controllers
         private void OnUserMistake()
         {
             uiRoot.UserFailView.Init(MistakeTextStart
-                                     + " Next step: "
+                                     + "Next step: "
                                      + modelController.GetNextStep().ToString()
                                      + "\n"
                                      + MistakeTextEnd,
