@@ -15,7 +15,7 @@ namespace Views.UI
             var res = new StringBuilder();
             for (var i = 0; i < scenarioSteps.Count; i++)
             {
-                res.AppendLine($"{i + 1}. {scenarioSteps[i].ToString()}");
+                res.AppendLine($"{(i + 1):00}. {scenarioSteps[i].ToString()}");
             }
 
             hint.text = res.ToString();
