@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2837835834ef4c1eac03b3fdf2ea4c96, type: 3}
   m_Name: Fuse_old
   m_EditorClassIdentifier: 
-  distanceToClosed: 1.2
+  distanceToOpened: 1.14
+  precision: 0.05

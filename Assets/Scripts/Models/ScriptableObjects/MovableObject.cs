@@ -5,6 +5,7 @@ namespace Models.ScriptableObjects
     [CreateAssetMenu(fileName = "new MovableObject", menuName = "MovableObject")]
     public class MovableObject : ScriptableObject
     {
-        public float distanceToClosed;
+        public float distanceToOpened;
+        public float precision;
     }
 }
