@@ -1,4 +1,7 @@
-﻿using Models.ScriptableObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Models.ScriptableObjects;
 using UnityEngine;
 using Views.InteractableObjects;
 
@@ -29,16 +32,25 @@ namespace Views
             }
         }
 
+        #region Private variables
+        
         private Camera _camera => Camera.main;
         private Vector3 _offsetToObj;
-        private Vector3 _startPosition;
-        
+        private Bounds _bounds;
+        private Vector3 _offsetToBoundsCenter;
+        private Collider[] _overlapColliders = new Collider[8];
+        private List<Collider> _childrenColliders;
+
+        private Vector3 _newPos;
+        #endregion
+
         private void OnEnable()
         {
             Parent.onDrag += Move;
             Parent.onMouseDown += OnStartMove;
-            _startPosition = transform.position;
-            _isOn = GetDistanceToStart() < movableObjectSO.distanceToClosed;
+            _isOn = GetDistanceToStart() < movableObjectSO.distanceToOpened;
+            _bounds = GetBoundBox();
+            _offsetToBoundsCenter = _bounds.center - transform.position;
         }
         
         private void OnDisable()
@@ -55,27 +67,33 @@ namespace Views
         /// <param name="dragableObject">Object being dragged by user</param>
         public void Move(Vector2 offset, Vector3 newMousePosition, DragableObject dragableObject)
         {
-            var pos = GetMouseWorldPoint(newMousePosition) + _offsetToObj;
-            if (!allowMovementAlongAxisX)
-            {
-                pos = new Vector3(transform.position.x, pos.y, pos.z);
-            }
+            var pos = GetNewWorldPosition(newMousePosition);
+            _newPos = pos;
 
-            if (!allowMovementAlongAxisY)
-            {
-                pos = new Vector3(pos.x, transform.position.y, pos.z);
-            }
+            if (IsOverlapping(pos)) return;
 
             transform.position = pos;
 
-            if (((transform.position - _startPosition).magnitude >= movableObjectSO.distanceToClosed && !_isOn) ||
-                ((transform.position - _startPosition).magnitude < movableObjectSO.distanceToClosed && _isOn))
+            if (((transform.position - closedTransform.position).magnitude >= movableObjectSO.distanceToOpened ||
+                (transform.position - closedTransform.position).magnitude > movableObjectSO.precision)
+                && !_isOn)
+            {
+                ChangeStateAndNotify();
+            } else if ((transform.position - closedTransform.position).magnitude <= movableObjectSO.precision &&
+                       _isOn)
+            {
+                transform.position = closedTransform.position;
+                ChangeStateAndNotify();
+            }
+            
+            /*if (((transform.position - openedTransform.position).magnitude >= movableObjectSO.distanceToOpened && !_isOn) ||
+                ((transform.position - closedTransform.position).magnitude < movableObjectSO.distanceToOpened && _isOn))
             {
                 _isOn = !_isOn;
                 NotifyOnStateChanged();
-            }
+            }*/
         }
-        
+
         protected override void TurnObjectOn(bool notify = true)
         {
             transform.position = openedTransform.position;
@@ -99,6 +117,22 @@ namespace Views
         {
             _offsetToObj = transform.position - GetMouseWorldPoint(mousePosition);
         }
+        
+        private Vector3 GetNewWorldPosition(Vector3 newMousePosition)
+        {
+            var pos = GetMouseWorldPoint(newMousePosition) + _offsetToObj;
+            if (!allowMovementAlongAxisX)
+            {
+                pos = new Vector3(transform.position.x, pos.y, pos.z);
+            }
+
+            if (!allowMovementAlongAxisY)
+            {
+                pos = new Vector3(pos.x, transform.position.y, pos.z);
+            }
+
+            return pos;
+        }
 
         private Vector3 GetMouseWorldPoint(Vector3 mousePosition)
         {
@@ -109,7 +143,54 @@ namespace Views
 
         private float GetDistanceToStart()
         {
-            return (transform.position - _startPosition).magnitude;
+            return (transform.position - openedTransform.position).magnitude;
+        }
+
+        private void ChangeStateAndNotify()
+        {
+            _isOn = !_isOn;
+            NotifyOnStateChanged();
+        }
+
+        /// <summary>
+        /// Calculates extents to use in Physics.OverlapBoxNonAlloc
+        /// </summary>
+        private Bounds GetBoundBox()
+        {
+            _childrenColliders = GetComponentsInChildren<Collider>().ToList();
+            if (_childrenColliders.Count == 0) return new Bounds(Vector3.zero, Vector3.zero);
+            
+            var bounds = _childrenColliders[0].bounds;
+            foreach (var c in _childrenColliders)
+            {
+                bounds.Encapsulate(c.bounds);
+            }
+           
+            return bounds;
+        }
+
+        /// <summary>
+        /// Check if new position is overlapping with some other collider
+        /// </summary>
+        /// <param name="position">New object position</param>
+        /// <returns>True if overlaps with other object, otherwise false</returns>
+        private bool IsOverlapping(Vector3 position)
+        {
+            var size = Physics.OverlapBoxNonAlloc(position + _offsetToBoundsCenter, _bounds.extents, _overlapColliders, Quaternion.identity);
+            for (var i = 0; i < size; i++)
+            {
+                if (!_childrenColliders.Contains(_overlapColliders[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireCube(transform.position + _offsetToBoundsCenter, _bounds.extents * 2);
         }
     }
 }
