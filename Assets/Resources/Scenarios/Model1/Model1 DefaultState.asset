@@ -19,3 +19,11 @@ MonoBehaviour:
     state: 0
   - deviceName: Cap
     state: 0
+  - deviceName: Dampers
+    state: 0
+  - deviceName: FuseHolder
+    state: 0
+  - deviceName: Fuse_old
+    state: 0
+  - deviceName: Fuse_new
+    state: 1

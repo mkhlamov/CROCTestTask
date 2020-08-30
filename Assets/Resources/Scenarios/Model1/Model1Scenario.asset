@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c305bba01a294120814a631e6167f97c, type: 3}
   m_Name: Model1Scenario
   m_EditorClassIdentifier: 
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 21300000, guid: ea80c60d473039f4bae847057117ac37, type: 3}
   modelName: Model 1
   modelPrefab: {fileID: 2260457074590576790, guid: 5fdbc7eccd235bc448d9911b15fca824,
     type: 3}
@@ -23,6 +23,18 @@ MonoBehaviour:
     state: 1
   - deviceName: Cap
     state: 1
+  - deviceName: Dampers
+    state: 1
+  - deviceName: FuseHolder
+    state: 1
+  - deviceName: Fuse_old
+    state: 1
+  - deviceName: Fuse_new
+    state: 0
+  - deviceName: FuseHolder
+    state: 0
+  - deviceName: Dampers
+    state: 0
   - deviceName: Cap
     state: 0
   - deviceName: Gate Valve
