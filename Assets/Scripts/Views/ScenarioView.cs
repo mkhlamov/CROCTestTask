@@ -23,6 +23,7 @@ namespace Views
             _scenario = data;
             scenarioName.text = _scenario.modelName;
             itemIcon.sprite = _scenario.previewImage;
+            itemIcon.preserveAspect = true;
 
             button.onClick.AddListener(() => callback(data) );
         }
