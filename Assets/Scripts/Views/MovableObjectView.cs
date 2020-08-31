@@ -16,6 +16,7 @@ namespace Views
 
         [SerializeField] private bool allowMovementAlongAxisX = true;
         [SerializeField] private bool allowMovementAlongAxisY = true;
+        [SerializeField] private List<Collider> checkOverlapWith;
         
         private DragableObjectParent _parent;
 
@@ -40,8 +41,6 @@ namespace Views
         private Vector3 _offsetToBoundsCenter;
         private Collider[] _overlapColliders = new Collider[8];
         private List<Collider> _childrenColliders;
-
-        private Vector3 _newPos;
         #endregion
 
         private void OnEnable()
@@ -68,7 +67,6 @@ namespace Views
         public void Move(Vector2 offset, Vector3 newMousePosition, DragableObject dragableObject)
         {
             var pos = GetNewWorldPosition(newMousePosition);
-            _newPos = pos;
 
             if (IsOverlapping(pos)) return;
 
@@ -85,13 +83,6 @@ namespace Views
                 transform.position = closedTransform.position;
                 ChangeStateAndNotify();
             }
-            
-            /*if (((transform.position - openedTransform.position).magnitude >= movableObjectSO.distanceToOpened && !_isOn) ||
-                ((transform.position - closedTransform.position).magnitude < movableObjectSO.distanceToOpened && _isOn))
-            {
-                _isOn = !_isOn;
-                NotifyOnStateChanged();
-            }*/
         }
 
         protected override void TurnObjectOn(bool notify = true)
@@ -177,12 +168,19 @@ namespace Views
         private bool IsOverlapping(Vector3 position)
         {
             var size = Physics.OverlapBoxNonAlloc(position + _offsetToBoundsCenter, _bounds.extents, _overlapColliders, Quaternion.identity);
-            for (var i = 0; i < size; i++)
+            if (checkOverlapWith.Count == 0)
             {
-                if (!_childrenColliders.Contains(_overlapColliders[i]))
+                for (var i = 0; i < size; i++)
                 {
-                    return true;
+                    if (!_childrenColliders.Contains(_overlapColliders[i]))
+                    {
+                        return true;
+                    }
                 }
+            }
+            else
+            {
+                return checkOverlapWith.Any(c => _overlapColliders.Contains(c));
             }
 
             return false;
