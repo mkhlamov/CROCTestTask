@@ -60,7 +60,7 @@ namespace Controllers
 
         private void OnGameFinish()
         {
-            MainController.SetController(ControllerType.Finish, GameData);
+            MainController.SetController(ControllerType.Menu, GameData);
         }
         
         private void OnGameFinish(int errorsCount)
