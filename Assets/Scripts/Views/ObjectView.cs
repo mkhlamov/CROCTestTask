@@ -11,7 +11,11 @@ namespace Views
         public Action<ObjectView, bool> OnDeviceStateChanged;
         
         protected bool _isOn = true;
-        public bool IsOn => _isOn;
+        public bool IsOn
+        {
+            get => _isOn;
+            set => _isOn = value;
+        }
 
         /// <summary>
         /// Turns Object View on

@@ -37,8 +37,8 @@ namespace Controllers
             {
                 if (defaultDeviceParts.Contains(devicePart.gameObject.name))
                 {
-                    devicePart.TurnObjectToState(scenario.modelDefaultState.deviceStates
-                        .First(x => x.deviceName == devicePart.gameObject.name).state);
+                    devicePart.IsOn = scenario.modelDefaultState.deviceStates
+                        .First(x => x.deviceName == devicePart.gameObject.name).state;
                 }
                 devicePart.OnDeviceStateChanged += OnDevicePartStateChanged;
             }
