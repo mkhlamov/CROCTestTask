@@ -26,7 +26,7 @@ namespace Controllers
         {
             base.Activate(gameData);
 
-            uiRoot.View.onFinish += OnGameFinish;
+            uiRoot.View.onFinish += OnFinishButtonClicked;
             uiRoot.View.UpdateTime(GameData.GameTime);
 
             if (gameData.Scenario.modelPrefab != null)
@@ -45,7 +45,7 @@ namespace Controllers
         {
             base.Deactivate();
             
-            uiRoot.View.onFinish -= OnGameFinish;
+            uiRoot.View.onFinish -= OnFinishButtonClicked;
             DestroyScenarioModel();
             modelController.onScenarioCompleted -= OnGameFinish;
         }
@@ -59,6 +59,11 @@ namespace Controllers
         }
 
         private void OnGameFinish()
+        {
+            MainController.SetController(ControllerType.Finish, GameData);
+        }
+
+        private void OnFinishButtonClicked()
         {
             MainController.SetController(ControllerType.Menu, GameData);
         }
