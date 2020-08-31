@@ -39,7 +39,7 @@ namespace Views
         private Vector3 _offsetToObj;
         private Bounds _bounds;
         private Vector3 _offsetToBoundsCenter;
-        private Collider[] _overlapColliders = new Collider[8];
+        private Collider[] _overlapColliders = new Collider[32];
         private List<Collider> _childrenColliders;
         #endregion
 
