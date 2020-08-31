@@ -24,7 +24,7 @@ MonoBehaviour:
   - deviceName: Cap
     state: 1
   - deviceName: Dampers
-    state: 1
+    state: 0
   - deviceName: FuseHolder
     state: 0
   - deviceName: Fuse_old
@@ -34,7 +34,7 @@ MonoBehaviour:
   - deviceName: FuseHolder
     state: 1
   - deviceName: Dampers
-    state: 0
+    state: 1
   - deviceName: Cap
     state: 0
   - deviceName: Gate Valve
