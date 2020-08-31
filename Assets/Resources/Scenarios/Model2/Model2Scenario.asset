@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c305bba01a294120814a631e6167f97c, type: 3}
+  m_Name: Model2Scenario
+  m_EditorClassIdentifier: 
+  previewImage: {fileID: 21300000, guid: ee8c97d48780eb04caad5477df435708, type: 3}
+  modelName: Model 2
+  modelPrefab: {fileID: 2260457074590576790, guid: 99cc57bbbcfa5214991ac5859cc7d27c,
+    type: 3}
+  deviceStates:
+  - deviceName: Switch
+    state: 0
+  - deviceName: Gate Valve
+    state: 1
+  - deviceName: Cap
+    state: 1
+  - deviceName: Big damper button
+    state: 1
+  - deviceName: Big damper body
+    state: 1
+  - deviceName: Dampers
+    state: 1
+  - deviceName: FuseHolder
+    state: 1
+  - deviceName: Fuse_old
+    state: 1
+  - deviceName: Fuse_new
+    state: 0
+  - deviceName: FuseHolder
+    state: 0
+  - deviceName: Dampers
+    state: 0
+  - deviceName: Big damper body
+    state: 0
+  - deviceName: Big damper button
+    state: 0
+  - deviceName: Cap
+    state: 0
+  - deviceName: Gate Valve
+    state: 0
+  - deviceName: Switch
+    state: 1
+  modelDefaultState: {fileID: 11400000, guid: 3860884200bc15448bae013091902454, type: 2}

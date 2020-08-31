@@ -2043,6 +2043,7 @@ MonoBehaviour:
   uiRoot: {fileID: 311050853}
   scenarios:
   - {fileID: 11400000, guid: 569065a1f046abb4ebcefd371fda05f8, type: 2}
+  - {fileID: 11400000, guid: 98bd5e79ac8de7a4ea79fc43c16446ff, type: 2}
   scenariosParent: {fileID: 538920773}
 --- !u!1 &1057615489
 GameObject:
