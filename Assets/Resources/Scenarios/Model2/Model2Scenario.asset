@@ -30,13 +30,13 @@ MonoBehaviour:
   - deviceName: Dampers
     state: 1
   - deviceName: FuseHolder
-    state: 1
+    state: 0
   - deviceName: Fuse_old
     state: 1
   - deviceName: Fuse_new
     state: 0
   - deviceName: FuseHolder
-    state: 0
+    state: 1
   - deviceName: Dampers
     state: 0
   - deviceName: Big damper body
