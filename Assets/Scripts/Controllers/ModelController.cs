@@ -8,20 +8,24 @@ using Views;
 
 namespace Controllers
 {
+    [RequireComponent(typeof(AudioSource))]
     public class ModelController : BaseController
     {
+        [SerializeField] private AudioClip correctActionAudio;
+        [SerializeField] private AudioClip wrongActionAudio;
+        
         /// <summary>
         /// Action on scenario end with number of errors
         /// </summary>
         public Action<int> onScenarioCompleted;
-
         public Action onUserMistake;
         
         private Scenario _currentScenario;
-        [SerializeField] private List<ObjectView> _deviceParts;
-        [SerializeField] private int _scenarioStep = 0;
-        [SerializeField] private int _errorsCount = 0;
+        private List<ObjectView> _deviceParts;
+        private int _scenarioStep = 0;
+        private int _errorsCount = 0;
         private GameObject _model;
+        private AudioSource _audioSource;
         
         public void Init(Scenario scenario, GameObject model)
         {
@@ -29,6 +33,7 @@ namespace Controllers
             _scenarioStep = 0;
             _errorsCount = 0;
             _model = model;
+            _audioSource = GetComponent<AudioSource>();
 
             _deviceParts = _model.GetComponentsInChildren<ObjectView>().ToList();
             var defaultDeviceParts = scenario.modelDefaultState.deviceStates.Select(x => x.deviceName).ToList();
@@ -70,10 +75,12 @@ namespace Controllers
                 devicePartState.state == state)
             {
                 _scenarioStep++;
+                PlayAudio(correctActionAudio);
             }
             else
             {
                 _errorsCount++;
+                PlayAudio(wrongActionAudio);
                 objectView.ToggleObjectWithNotification(false);
                 onUserMistake?.Invoke();
             }
@@ -82,6 +89,12 @@ namespace Controllers
             {
                 Finalize();
             }
+        }
+
+        private void PlayAudio(AudioClip clip)
+        {
+            _audioSource.clip = clip;
+            _audioSource.Play();
         }
     }
 }
