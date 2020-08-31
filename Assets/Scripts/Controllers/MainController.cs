@@ -8,11 +8,9 @@ namespace Controllers
     public class MainController : MonoBehaviour
     {
         [SerializeField] private List<ControllerByType> controllers;
-        //TODO: make SerializableDictionary
+        //TODO: make SerializableDictionary. Maybe use Odin Inspector.
         //[SerializeField] private SerializableDictionary<ControllerType, BaseController> controllers;
         
-        
-
         private void Start()
         {
             foreach (var controller in controllers)

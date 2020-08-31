@@ -69,7 +69,6 @@ namespace Views
 
         private void SetRotation()
         {
-            // TODO choose axis
             var rot = transform.rotation.eulerAngles;
             switch (rotatableObjectSO.rotationAxis)
             {
@@ -87,7 +86,6 @@ namespace Views
             }
 
             transform.rotation = Quaternion.Euler(rot);
-            //transform.rotation = Quaternion.Euler(transform.rotation.x, _currentRotation, transform.rotation.z);
         }
     }
 }
